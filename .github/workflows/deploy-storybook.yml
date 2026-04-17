@@ -19,7 +19,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      STORYBOOK_BASE_PATH: /react-krds/
+      STORYBOOK_BASE_PATH: /krds-react/
     steps:
       - name: Checkout
         uses: actions/checkout@v4
