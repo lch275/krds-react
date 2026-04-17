@@ -1,0 +1,60 @@
+/* ============================================================
+   FOCUS RING STYLES
+   접근성 포커스 표시자 - KWCAG 2.2 필수 요소
+   @layer base에 배치하여 Tailwind의 focus-visible:outline-none 등이
+   컴포넌트에서 정상적으로 override 가능하도록 함
+   ============================================================ */
+
+@layer base {
+  /* 브라우저 기본 포커스 링 제거 - 커스텀으로 대체 */
+  :focus {
+    outline: none;
+  }
+
+  /* 키보드 네비게이션 시에만 포커스 링 표시 */
+  :focus-visible {
+    outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+    border-radius: inherit;
+  }
+
+  /* 다크 모드: 포커스 링 색상 조정 */
+  [data-theme="dark"] :focus-visible {
+    outline-color: var(--focus-ring-color);
+  }
+
+  /* 스킵 네비게이션 링크 */
+  .skip-nav {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    z-index: var(--z-index-toast);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-primary);
+    color: var(--color-text-on-primary);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: top var(--duration-fast) var(--easing-out);
+  }
+
+  .skip-nav:focus {
+    top: var(--space-2);
+    outline: var(--focus-ring-width) solid var(--color-gray-0);
+    outline-offset: var(--focus-ring-offset);
+  }
+}
+
+/* Windows High Contrast Mode 지원 - !important 필요하므로 layer 밖에 */
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 3px solid ButtonText;
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) :focus-visible {
+    outline-color: var(--focus-ring-color);
+  }
+}

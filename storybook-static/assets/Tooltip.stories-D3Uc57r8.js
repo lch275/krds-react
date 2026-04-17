@@ -1,0 +1,17 @@
+import{a as e,n as t}from"./chunk-BneVvdWh.js";import{t as n}from"./react-D1sJ83FZ.js";import{t as r}from"./react-dom-Dt-mlgBs.js";import{n as i,t as a}from"./cn-BoL-pa2N.js";import{t as o}from"./jsx-runtime-4HHWW5MW.js";function s(){let e=(0,d.useContext)(m);if(!e)throw Error(`[KRDS] Tooltip components must be used inside Tooltip.`);return e}function c({children:e,defaultOpen:t=!1}){let[n,r]=(0,d.useState)(t),i=(0,d.useRef)(null),a=`tooltip-${(0,d.useId)()}`;return(0,p.jsx)(m.Provider,{value:{open:n,setOpen:r,triggerRef:i,contentId:a},children:e})}function l({children:e}){let{open:t,setOpen:n,triggerRef:r,contentId:i}=s();return(0,p.jsx)(`span`,{ref:r,"data-slot":`tooltip-trigger`,className:`inline-flex`,onMouseEnter:()=>n(!0),onMouseLeave:()=>n(!1),onFocus:()=>n(!0),onBlur:()=>n(!1),onClick:()=>n(!t),children:(0,d.cloneElement)(e,{"aria-describedby":t?i:void 0})})}function u({children:e,className:t}){let{open:n,setOpen:r,triggerRef:i,contentId:o}=s(),c=(0,d.useRef)(null),[l,u]=(0,d.useState)({top:0,left:0});return(0,d.useEffect)(()=>{if(!n||!i.current)return;let e=i.current.getBoundingClientRect();u({top:e.bottom+window.scrollY+8,left:e.left+window.scrollX})},[n,i]),(0,d.useEffect)(()=>{if(!n)return;let e=e=>{e.key===`Escape`&&(r(!1),i.current?.querySelector(`button,a,[href],[tabindex]:not([tabindex="-1"])`)?.focus())},t=e=>{let t=e.target;!c.current?.contains(t)&&!i.current?.contains(t)&&r(!1)};return document.addEventListener(`keydown`,e),document.addEventListener(`mousedown`,t),()=>{document.removeEventListener(`keydown`,e),document.removeEventListener(`mousedown`,t)}},[n,r,i]),n?(0,f.createPortal)((0,p.jsx)(`div`,{ref:c,id:o,role:`tooltip`,"data-slot":`tooltip-content`,className:a(`z-toast max-w-xs rounded-card border border-border-strong bg-bg-inverse px-3 py-2 text-sm text-text-inverse shadow-dropdown`,t),style:{position:`absolute`,top:l.top,left:l.left},children:e}),document.body):null}var d,f,p,m,h=t((()=>{d=e(n(),1),f=r(),i(),p=o(),m=(0,d.createContext)(null),c.__docgenInfo={description:``,methods:[],displayName:`Tooltip`,props:{children:{required:!0,tsType:{name:`ReactNode`},description:``},defaultOpen:{required:!1,tsType:{name:`boolean`},description:``,defaultValue:{value:`false`,computed:!1}}}},l.__docgenInfo={description:``,methods:[],displayName:`TooltipTrigger`,props:{children:{required:!0,tsType:{name:`ReactElement`},description:``}}}})),g,_,v,y;t((()=>{h(),g=o(),_={title:`Help/Tooltip`,component:c,tags:[`autodocs`],parameters:{docs:{description:{component:`
+**Tooltip** provides short supplemental guidance on hover or focus.
+
+## Accessibility notes
+- Keep tooltip content brief
+- Do not place essential instructions only inside a tooltip
+- Ensure the trigger itself has a clear accessible name
+        `}}}},v={render:()=>(0,g.jsxs)(c,{children:[(0,g.jsx)(l,{children:(0,g.jsx)(`button`,{type:`button`,className:`rounded-control border border-border-default px-3 py-2`,children:`Hover help`})}),(0,g.jsx)(u,{children:`Short supplemental guidance.`})]})},v.parameters={...v.parameters,docs:{...v.parameters?.docs,source:{originalSource:`{
+  render: () => <Tooltip>\r
+      <TooltipTrigger>\r
+        <button type="button" className="rounded-control border border-border-default px-3 py-2">\r
+          Hover help\r
+        </button>\r
+      </TooltipTrigger>\r
+      <TooltipContent>Short supplemental guidance.</TooltipContent>\r
+    </Tooltip>
+}`,...v.parameters?.docs?.source}}},y=[`Default`]}))();export{v as Default,y as __namedExportsOrder,_ as default};

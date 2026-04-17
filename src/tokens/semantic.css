@@ -1,0 +1,205 @@
+/* ============================================================
+   SEMANTIC DESIGN TOKENS
+   Component-facing aliases built on top of the raw scales.
+   Components should consume these semantic tokens by default.
+   ============================================================ */
+
+:root {
+  /* ------------------------------------------------------------------
+     COLOR: Brand / Primary
+     ------------------------------------------------------------------ */
+  --color-primary: var(--color-blue-600);
+  --color-primary-hover: var(--color-blue-700);
+  --color-primary-active: var(--color-blue-800);
+  --color-primary-subtle: var(--color-blue-50);
+  --color-primary-contrast: var(--color-gray-0);
+
+  /* ------------------------------------------------------------------
+     COLOR: Text
+     ------------------------------------------------------------------ */
+  --color-text-default: var(--color-gray-900);
+  --color-text-subtle: var(--color-gray-600);
+  --color-text-muted: var(--color-gray-500);
+  --color-text-disabled: var(--color-gray-400);
+  --color-text-inverse: var(--color-gray-0);
+  --color-text-on-primary: var(--color-gray-0);
+  --color-text-link: var(--color-blue-600);
+  --color-text-link-hover: var(--color-blue-700);
+  --color-text-link-visited: var(--color-blue-800);
+
+  /* ------------------------------------------------------------------
+     COLOR: Background
+     ------------------------------------------------------------------ */
+  --color-bg-default: var(--color-gray-0);
+  --color-bg-subtle: var(--color-gray-50);
+  --color-bg-muted: var(--color-gray-100);
+  --color-bg-inverse: var(--color-gray-900);
+  --color-bg-overlay: rgba(0, 0, 0, 0.5);
+
+  /* ------------------------------------------------------------------
+     COLOR: Border
+     ------------------------------------------------------------------ */
+  --color-border-default: var(--color-gray-300);
+  --color-border-strong: var(--color-gray-500);
+  --color-border-focus: var(--color-blue-600);
+  --color-border-disabled: var(--color-gray-200);
+  --color-border-error: var(--color-red-600);
+
+  /* ------------------------------------------------------------------
+     COLOR: Status
+     ------------------------------------------------------------------ */
+  --color-status-info: var(--color-blue-600);
+  --color-status-info-subtle: var(--color-blue-50);
+  --color-status-info-text: var(--color-blue-800);
+  --color-status-success: var(--color-green-500);
+  --color-status-success-subtle: var(--color-green-50);
+  --color-status-success-text: var(--color-green-800);
+  --color-status-warning: var(--color-yellow-500);
+  --color-status-warning-subtle: var(--color-yellow-50);
+  --color-status-warning-text: var(--color-yellow-800);
+  --color-status-error: var(--color-red-600);
+  --color-status-error-subtle: var(--color-red-50);
+  --color-status-error-text: var(--color-red-800);
+
+  /* ------------------------------------------------------------------
+     SPACING: Component spacing aliases
+     ------------------------------------------------------------------ */
+  --space-control-xs: var(--space-1);
+  --space-control-sm: var(--space-2);
+  --space-control-md: var(--space-3);
+  --space-control-lg: var(--space-4);
+  --space-control-xl: var(--space-5);
+
+  /* ------------------------------------------------------------------
+     SIZING: Control height aliases
+     44px minimum touch target is represented by --size-control-lg.
+     ------------------------------------------------------------------ */
+  --size-control-sm: 32px;
+  --size-control-md: 40px;
+  --size-control-lg: 44px;
+  --size-touch-min: var(--space-11);
+
+  /* ------------------------------------------------------------------
+     RADIUS: Semantic aliases
+     ------------------------------------------------------------------ */
+  --radius-control: var(--radius-md);
+  --radius-card: var(--radius-lg);
+  --radius-badge: var(--radius-full);
+  --radius-dialog: var(--radius-xl);
+
+  /* ------------------------------------------------------------------
+     SHADOW: Semantic aliases
+     ------------------------------------------------------------------ */
+  --shadow-card: var(--shadow-sm);
+  --shadow-dropdown: var(--shadow-md);
+  --shadow-modal: var(--shadow-dialog);
+
+  /* ------------------------------------------------------------------
+     TYPOGRAPHY: Font families
+     ------------------------------------------------------------------ */
+  --font-family-sans:
+    'Noto Sans KR',
+    'Apple SD Gothic Neo',
+    'Malgun Gothic',
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    sans-serif;
+  --font-family-mono:
+    ui-monospace,
+    'Cascadia Code',
+    'Fira Code',
+    Consolas,
+    'Liberation Mono',
+    monospace;
+
+  /* ------------------------------------------------------------------
+     FOCUS RING
+     ------------------------------------------------------------------ */
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: var(--color-blue-600);
+  --focus-ring-style: solid;
+
+  /* ------------------------------------------------------------------
+     MOTION
+     ------------------------------------------------------------------ */
+  --duration-fast: 100ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --easing-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-in: cubic-bezier(0.4, 0, 1, 1);
+  --easing-out: cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* ------------------------------------------------------------------
+   DARK MODE: data-theme="dark"
+   Storybook and app can opt into dark mode through a data attribute.
+   ------------------------------------------------------------------ */
+[data-theme='dark'] {
+  --color-primary: var(--color-blue-400);
+  --color-primary-hover: var(--color-blue-300);
+  --color-primary-active: var(--color-blue-200);
+  --color-primary-subtle: rgba(79, 138, 229, 0.15);
+  --color-primary-contrast: var(--color-gray-900);
+
+  --color-text-default: var(--color-gray-50);
+  --color-text-subtle: var(--color-gray-400);
+  --color-text-muted: var(--color-gray-500);
+  --color-text-disabled: var(--color-gray-600);
+  --color-text-inverse: var(--color-gray-900);
+  --color-text-on-primary: var(--color-gray-900);
+  --color-text-link: var(--color-blue-400);
+  --color-text-link-hover: var(--color-blue-300);
+
+  --color-bg-default: var(--color-gray-950);
+  --color-bg-subtle: var(--color-gray-900);
+  --color-bg-muted: var(--color-gray-800);
+  --color-bg-inverse: var(--color-gray-50);
+  --color-bg-overlay: rgba(0, 0, 0, 0.7);
+
+  --color-border-default: var(--color-gray-700);
+  --color-border-strong: var(--color-gray-500);
+  --color-border-focus: var(--color-blue-400);
+  --color-border-disabled: var(--color-gray-800);
+  --color-border-error: var(--color-red-400);
+
+  --focus-ring-color: var(--color-blue-400);
+}
+
+/* ------------------------------------------------------------------
+   SYSTEM DARK MODE: prefers-color-scheme
+   Used when data-theme is not explicitly set to light.
+   ------------------------------------------------------------------ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-primary: var(--color-blue-400);
+    --color-primary-hover: var(--color-blue-300);
+    --color-primary-active: var(--color-blue-200);
+    --color-primary-subtle: rgba(79, 138, 229, 0.15);
+    --color-primary-contrast: var(--color-gray-900);
+
+    --color-text-default: var(--color-gray-50);
+    --color-text-subtle: var(--color-gray-400);
+    --color-text-muted: var(--color-gray-500);
+    --color-text-disabled: var(--color-gray-600);
+    --color-text-inverse: var(--color-gray-900);
+    --color-text-on-primary: var(--color-gray-900);
+    --color-text-link: var(--color-blue-400);
+    --color-text-link-hover: var(--color-blue-300);
+
+    --color-bg-default: var(--color-gray-950);
+    --color-bg-subtle: var(--color-gray-900);
+    --color-bg-muted: var(--color-gray-800);
+    --color-bg-inverse: var(--color-gray-50);
+    --color-bg-overlay: rgba(0, 0, 0, 0.7);
+
+    --color-border-default: var(--color-gray-700);
+    --color-border-strong: var(--color-gray-500);
+    --color-border-focus: var(--color-blue-400);
+    --color-border-disabled: var(--color-gray-800);
+    --color-border-error: var(--color-red-400);
+
+    --focus-ring-color: var(--color-blue-400);
+  }
+}

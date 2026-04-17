@@ -1,0 +1,1 @@
+import{a as e,n as t}from"./chunk-BneVvdWh.js";import{t as n}from"./react-D1sJ83FZ.js";function r(e,t,n){let r=e!==void 0,[a,o]=(0,i.useState)(t),s=r?e:a,c=(0,i.useRef)(n);return(0,i.useEffect)(()=>{c.current=n},[n]),[s,(0,i.useCallback)(e=>{let t=typeof e==`function`?e(s):e;r||o(t),c.current?.(t)},[r,s])]}var i,a=t((()=>{i=e(n(),1)}));export{r as n,a as t};
