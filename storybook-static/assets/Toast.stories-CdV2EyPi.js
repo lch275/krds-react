@@ -1,0 +1,13 @@
+import{a as e,n as t}from"./chunk-BneVvdWh.js";import{t as n}from"./react-D1sJ83FZ.js";import{n as r,t as i}from"./cn-BoL-pa2N.js";import{t as a}from"./jsx-runtime-4HHWW5MW.js";function o({open:e=!0,onOpenChange:t,duration:n=3e3,tone:r=`info`,children:a,className:o}){return(0,s.useEffect)(()=>{if(!e||n<=0)return;let r=window.setTimeout(()=>t?.(!1),n);return()=>window.clearTimeout(r)},[n,t,e]),e?(0,c.jsx)(`div`,{role:`status`,"aria-live":`polite`,"data-slot":`toast`,className:i(`fixed bottom-6 left-1/2 z-toast -translate-x-1/2 rounded-card px-4 py-3 text-sm text-text-on-primary shadow-dropdown`,r===`info`?`bg-bg-inverse`:`bg-status-warning-text`,o),children:a}):null}var s,c,l=t((()=>{s=e(n(),1),r(),c=a(),o.__docgenInfo={description:``,methods:[],displayName:`Toast`,props:{open:{required:!1,tsType:{name:`boolean`},description:``,defaultValue:{value:`true`,computed:!1}},onOpenChange:{required:!1,tsType:{name:`signature`,type:`function`,raw:`(open: boolean) => void`,signature:{arguments:[{type:{name:`boolean`},name:`open`}],return:{name:`void`}}},description:``},duration:{required:!1,tsType:{name:`number`},description:``,defaultValue:{value:`3000`,computed:!1}},tone:{required:!1,tsType:{name:`union`,raw:`'info' | 'warning'`,elements:[{name:`literal`,value:`'info'`},{name:`literal`,value:`'warning'`}]},description:``,defaultValue:{value:`'info'`,computed:!1}},children:{required:!0,tsType:{name:`string`},description:``},className:{required:!1,tsType:{name:`string`},description:``}}}})),u,d,f;t((()=>{l(),u={title:`Feedback/Toast`,component:o,tags:[`autodocs`],parameters:{docs:{description:{component:`
+**Toast** provides short-lived feedback after a user action.
+
+## Accessibility notes
+- Keep toast copy concise
+- Use toast for confirmation and lightweight status, not blocking errors
+- Ensure dismiss controls are reachable when the toast stays visible
+        `}}},argTypes:{duration:{control:`number`,description:`Auto-dismiss delay in milliseconds. Use 0 to keep it visible.`},children:{control:`text`,description:`Toast message.`},tone:{control:`select`,options:[`default`,`success`,`warning`,`error`,`info`],description:`Visual tone.`}}},d={args:{duration:0,children:`Saved successfully.`}},d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+  args: {
+    duration: 0,
+    children: 'Saved successfully.'
+  }
+}`,...d.parameters?.docs?.source}}},f=[`Default`]}))();export{d as Default,f as __namedExportsOrder,u as default};

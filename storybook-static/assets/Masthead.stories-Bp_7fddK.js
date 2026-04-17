@@ -1,0 +1,8 @@
+import{n as e}from"./chunk-BneVvdWh.js";import{n as t,t as n}from"./cn-BoL-pa2N.js";import{t as r}from"./jsx-runtime-4HHWW5MW.js";function i({text:e=`This is an official digital government service of the Republic of Korea.`,className:t}){return(0,a.jsx)(`div`,{"data-slot":`masthead`,className:n(`border-b border-border-default bg-bg-subtle px-4 py-2 text-xs text-text-subtle`,t),children:(0,a.jsxs)(`div`,{className:`mx-auto flex max-w-6xl items-center gap-2`,children:[(0,a.jsx)(`span`,{"aria-hidden":`true`,className:`inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-semibold text-text-on-primary`,children:`GOV`}),(0,a.jsx)(`p`,{children:e})]})})}var a,o=e((()=>{t(),a=r(),i.__docgenInfo={description:``,methods:[],displayName:`Masthead`,props:{text:{required:!1,tsType:{name:`string`},description:``,defaultValue:{value:`'This is an official digital government service of the Republic of Korea.'`,computed:!1}},className:{required:!1,tsType:{name:`string`},description:``}}}})),s,c,l;e((()=>{o(),s={title:`Identity/Masthead`,component:i,tags:[`autodocs`],parameters:{docs:{description:{component:`
+**Masthead** carries top-level identity and official service framing inspired by KRDS.
+
+## Accessibility notes
+- Use it to reinforce official identity, not to duplicate main navigation
+- Keep the wording short and recognizable
+- Pair it carefully with the main header so landmark roles do not become confusing
+        `}}}},c={},c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{}`,...c.parameters?.docs?.source}}},l=[`Default`]}))();export{c as Default,l as __namedExportsOrder,s as default};

@@ -1,0 +1,25 @@
+/* ============================================================
+   MOTION / ANIMATION
+   접근성: prefers-reduced-motion 고려
+   ============================================================ */
+
+/* prefers-reduced-motion: reduce 시 모든 애니메이션 제한 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Spinner: 감소 모션 시 회전 대신 페이드 */
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="spinner"] {
+    animation: none !important;
+    opacity: 0.6;
+  }
+}

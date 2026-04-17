@@ -1,0 +1,14 @@
+import{n as e}from"./chunk-BneVvdWh.js";import{n as t,t as n}from"./cn-BoL-pa2N.js";import{t as r}from"./jsx-runtime-4HHWW5MW.js";import{n as i,t as a}from"./Button-CdI2ZtSv.js";function o({open:e=!0,title:t,children:r,actionLabel:i,onAction:o,onClose:c,className:l}){return e?(0,s.jsxs)(`div`,{role:`status`,"aria-live":`polite`,"data-slot":`snackbar`,className:n(`fixed bottom-6 left-1/2 z-toast flex w-[min(32rem,calc(100vw-2rem))] -translate-x-1/2 items-start gap-3 rounded-card border border-border-strong bg-bg-inverse px-4 py-3 text-text-inverse shadow-dropdown`,l),children:[(0,s.jsxs)(`div`,{className:`min-w-0 flex-1`,children:[t&&(0,s.jsx)(`p`,{className:`mb-1 font-semibold`,children:t}),(0,s.jsx)(`p`,{className:`text-sm opacity-90`,children:r})]}),i&&(0,s.jsx)(a,{size:`sm`,variant:`link`,className:`text-text-on-primary`,onClick:o,children:i}),(0,s.jsx)(a,{size:`sm`,variant:`ghost`,className:`text-text-on-primary`,onClick:c,children:`x`})]}):null}var s,c=e((()=>{t(),i(),s=r(),o.__docgenInfo={description:``,methods:[],displayName:`Snackbar`,props:{open:{required:!1,tsType:{name:`boolean`},description:``,defaultValue:{value:`true`,computed:!1}},title:{required:!1,tsType:{name:`string`},description:``},children:{required:!0,tsType:{name:`string`},description:``},actionLabel:{required:!1,tsType:{name:`string`},description:``},onAction:{required:!1,tsType:{name:`signature`,type:`function`,raw:`() => void`,signature:{arguments:[],return:{name:`void`}}},description:``},onClose:{required:!1,tsType:{name:`signature`,type:`function`,raw:`() => void`,signature:{arguments:[],return:{name:`void`}}},description:``},className:{required:!1,tsType:{name:`string`},description:``}}}})),l,u,d;e((()=>{c(),l={title:`Feedback/Snackbar`,component:o,tags:[`autodocs`],parameters:{docs:{description:{component:`
+**Snackbar** presents transient feedback with an optional inline action.
+
+## Accessibility notes
+- Prefer a single clear action
+- Use snackbar for recoverable events, such as retry or undo
+- Avoid placing long-form explanations in this pattern
+        `}}},argTypes:{title:{control:`text`,description:`Short leading title.`},children:{control:`text`,description:`Supporting message.`},actionLabel:{control:`text`,description:`Optional action button label.`}}},u={args:{title:`Retry upload`,children:`The previous upload failed. Try again.`,actionLabel:`Retry`}},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  args: {
+    title: 'Retry upload',
+    children: 'The previous upload failed. Try again.',
+    actionLabel: 'Retry'
+  }
+}`,...u.parameters?.docs?.source}}},d=[`Default`]}))();export{u as Default,d as __namedExportsOrder,l as default};
