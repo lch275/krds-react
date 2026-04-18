@@ -2,19 +2,19 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Pagination } from './Pagination'
 
 const meta: Meta<typeof Pagination> = {
-  title: 'Navigation/Pagination',
+  title: '내비게이션/페이지네이션',
   component: Pagination,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: `
-**Pagination** helps users move through long result sets page by page.
+**Pagination**은 긴 결과 목록을 페이지 단위로 이동할 수 있게 하는 탐색 컴포넌트입니다.
 
-## Accessibility notes
-- Expose the current page clearly
-- Keep previous and next actions keyboard reachable
-- Use a compact range when the total number of pages is large
+## 접근성 메모
+- 현재 페이지를 명확하게 드러냅니다.
+- 이전/다음 이동은 키보드로 쉽게 접근 가능해야 합니다.
+- 전체 페이지 수가 많다면 축약 범위를 적절히 사용합니다.
         `,
       },
     },
@@ -22,19 +22,19 @@ const meta: Meta<typeof Pagination> = {
   argTypes: {
     currentPage: {
       control: 'number',
-      description: 'Currently active page.',
+      description: '현재 활성 페이지입니다.',
     },
     totalPages: {
       control: 'number',
-      description: 'Total number of pages.',
+      description: '전체 페이지 수입니다.',
     },
     siblingCount: {
       control: 'number',
-      description: 'Number of adjacent pages shown around the current page.',
+      description: '현재 페이지 주변에 표시할 인접 페이지 수입니다.',
     },
     className: {
       control: 'text',
-      description: 'Additional Tailwind classes.',
+      description: '추가 Tailwind 클래스입니다.',
     },
   },
 }
@@ -50,6 +50,7 @@ export const Default: Story = {
 }
 
 export const CompactRange: Story = {
+  name: '축약 범위',
   args: {
     currentPage: 8,
     totalPages: 20,

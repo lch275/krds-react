@@ -3,19 +3,19 @@ import { Textarea } from './Textarea'
 import { Field, FieldDescription, FieldError, FieldLabel } from '@/components/ui/Field/Field'
 
 const meta: Meta<typeof Textarea> = {
-  title: 'UI/Inputs/Textarea',
+  title: '인터페이스/입력/텍스트영역',
   component: Textarea,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: `
-**Textarea** is the multiline text input for longer user-generated content.
+**Textarea**는 여러 줄의 긴 텍스트를 입력할 때 사용하는 기본 입력 컴포넌트입니다.
 
-## Notes
-- Vertical resize is enabled
-- Minimum height is based on a comfortable multiline entry size
-- \`rows\` controls the initial visible height
+## 참고
+- 세로 방향 리사이즈를 지원합니다.
+- 기본 높이는 여러 줄 입력에 적당한 크기로 설정되어 있습니다.
+- \`rows\`로 초기 표시 높이를 제어합니다.
         `,
       },
     },
@@ -23,33 +23,33 @@ const meta: Meta<typeof Textarea> = {
   argTypes: {
     invalid: {
       control: 'boolean',
-      description: 'Invalid state.',
+      description: '오류 상태입니다.',
       table: { defaultValue: { summary: 'false' } },
     },
     disabled: {
       control: 'boolean',
-      description: 'Disabled state.',
+      description: '비활성 상태입니다.',
       table: { defaultValue: { summary: 'false' } },
     },
     required: {
       control: 'boolean',
-      description: 'Marks the field as required.',
+      description: '필수 입력으로 표시합니다.',
     },
     placeholder: {
       control: 'text',
-      description: 'Placeholder text.',
+      description: '플레이스홀더 텍스트입니다.',
     },
     rows: {
       control: { type: 'number', min: 2, max: 20 },
-      description: 'Initial row count.',
+      description: '초기 행 수입니다.',
     },
     'aria-label': {
       control: 'text',
-      description: 'Accessible name for standalone usage.',
+      description: '단독 사용 시 필요한 접근성 이름입니다.',
     },
     className: {
       control: 'text',
-      description: 'Additional Tailwind classes.',
+      description: '추가 Tailwind 클래스입니다.',
     },
   },
 }
@@ -58,36 +58,39 @@ export default meta
 type Story = StoryObj<typeof Textarea>
 
 export const Default: Story = {
+  name: '기본',
   args: {
-    'aria-label': 'Details',
-    placeholder: 'Enter the details of your request.',
+    'aria-label': '상세 내용',
+    placeholder: '상세 내용을 입력하세요.',
     rows: 4,
   },
 }
 
 export const Invalid: Story = {
+  name: '오류 상태',
   args: {
-    'aria-label': 'Details',
-    placeholder: 'Enter the details of your request.',
+    'aria-label': '상세 내용',
+    placeholder: '상세 내용을 입력하세요.',
     invalid: true,
   },
 }
 
 export const Disabled: Story = {
+  name: '비활성 상태',
   args: {
-    'aria-label': 'Details',
-    value: 'This content cannot be edited.',
+    'aria-label': '상세 내용',
+    value: '이 내용은 수정할 수 없습니다.',
     disabled: true,
   },
 }
 
 export const WithField: Story = {
-  name: 'With Field',
+  name: 'Field와 함께 사용',
   render: (args) => (
     <Field required>
-      <FieldLabel>Request details</FieldLabel>
-      <Textarea {...args} placeholder="Describe the request in detail." />
-      <FieldDescription>You can enter up to 1,000 characters.</FieldDescription>
+      <FieldLabel>민원 내용</FieldLabel>
+      <Textarea {...args} placeholder="민원 내용을 자세히 입력하세요." />
+      <FieldDescription>최대 1,000자까지 입력할 수 있습니다.</FieldDescription>
     </Field>
   ),
   args: {
@@ -98,31 +101,31 @@ export const WithField: Story = {
 }
 
 export const WithFieldError: Story = {
-  name: 'With Field Error',
+  name: 'Field 오류 상태',
   render: () => (
     <Field required>
-      <FieldLabel>Request details</FieldLabel>
-      <Textarea placeholder="Enter the request details." />
-      <FieldError>Please provide the details of the request.</FieldError>
+      <FieldLabel>민원 내용</FieldLabel>
+      <Textarea placeholder="민원 내용을 입력하세요." />
+      <FieldError>민원 내용을 입력하세요.</FieldError>
     </Field>
   ),
 }
 
 export const LargeRows: Story = {
-  name: 'Row Variations',
+  name: '행 수 비교',
   render: () => (
     <div className="flex flex-col gap-4">
       <Field>
-        <FieldLabel>Short note</FieldLabel>
-        <Textarea rows={2} placeholder="Brief content" />
+        <FieldLabel>짧은 메모</FieldLabel>
+        <Textarea rows={2} placeholder="간단한 내용을 입력하세요." />
       </Field>
       <Field>
-        <FieldLabel>Default size</FieldLabel>
-        <Textarea rows={4} placeholder="Regular content" />
+        <FieldLabel>기본 크기</FieldLabel>
+        <Textarea rows={4} placeholder="일반적인 내용을 입력하세요." />
       </Field>
       <Field>
-        <FieldLabel>Long content</FieldLabel>
-        <Textarea rows={8} placeholder="Detailed content" />
+        <FieldLabel>긴 내용</FieldLabel>
+        <Textarea rows={8} placeholder="상세한 내용을 입력하세요." />
       </Field>
     </div>
   ),

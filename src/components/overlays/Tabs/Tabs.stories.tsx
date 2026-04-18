@@ -3,16 +3,16 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './Tabs'
 
 const meta: Meta<typeof Tabs> = {
-  title: 'Overlays/Tabs',
+  title: '오버레이/탭',
   component: Tabs,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: `
-**Tabs** implements the ARIA Tabs Pattern with keyboard support and predictable content association.
+**Tabs**는 ARIA Tabs 패턴을 기반으로, 키보드 탐색과 패널 연결이 일관되게 동작하는 탭 인터페이스를 제공합니다.
 
-## Compound structure
+## 구성 예시
 \`\`\`tsx
 <Tabs defaultValue="tab1">
   <TabsList>
@@ -24,18 +24,18 @@ const meta: Meta<typeof Tabs> = {
 </Tabs>
 \`\`\`
 
-## Keyboard behavior
-| Key | Behavior |
+## 키보드 동작
+| 키 | 동작 |
 | --- | --- |
-| Arrow keys | Move focus between triggers |
-| Home | Move focus to the first trigger |
-| End | Move focus to the last trigger |
-| Enter / Space | Activate the focused tab in manual mode |
-| Tab | Leaves the tablist as a single stop |
+| 방향키 | 탭 버튼 사이를 이동 |
+| Home | 첫 번째 탭으로 이동 |
+| End | 마지막 탭으로 이동 |
+| Enter / Space | 수동 모드에서 현재 포커스 탭 활성화 |
+| Tab | 탭 목록을 하나의 정지점으로 지나감 |
 
-## Activation modes
-- \`automatic\`: focus movement activates the tab immediately
-- \`manual\`: focus moves first, then activation happens on Enter or Space
+## 활성화 방식
+- \`automatic\`: 포커스가 이동하면 즉시 탭이 활성화됩니다.
+- \`manual\`: 포커스만 먼저 이동하고 Enter 또는 Space로 활성화합니다.
         `,
       },
     },
@@ -43,27 +43,27 @@ const meta: Meta<typeof Tabs> = {
   argTypes: {
     defaultValue: {
       control: 'text',
-      description: 'Initial active tab for uncontrolled usage.',
+      description: '비제어 사용 시 초기 활성 탭입니다.',
     },
     value: {
       control: 'text',
-      description: 'Controlled active tab value.',
+      description: '제어형 활성 탭 값입니다.',
     },
     orientation: {
       control: 'select',
       options: ['horizontal', 'vertical'],
-      description: 'Tab orientation.',
+      description: '탭 배치 방향입니다.',
       table: { defaultValue: { summary: 'horizontal' } },
     },
     activationMode: {
       control: 'select',
       options: ['automatic', 'manual'],
-      description: 'Tab activation strategy.',
+      description: '탭 활성화 방식입니다.',
       table: { defaultValue: { summary: 'automatic' } },
     },
     className: {
       control: 'text',
-      description: 'Additional CSS classes on the root element.',
+      description: '루트 요소에 적용할 추가 클래스입니다.',
     },
   },
 }
@@ -71,22 +71,50 @@ const meta: Meta<typeof Tabs> = {
 export default meta
 type Story = StoryObj<typeof Tabs>
 
+function ControlledTabsStory() {
+  const [value, setValue] = useState('info')
+
+  return (
+    <div className="flex flex-col gap-4">
+      <p className="text-sm text-text-subtle">
+        현재 탭: <strong>{value}</strong>
+      </p>
+      <Tabs value={value} onValueChange={setValue}>
+        <TabsList>
+          <TabsTrigger value="info">민원 정보</TabsTrigger>
+          <TabsTrigger value="history">처리 이력</TabsTrigger>
+          <TabsTrigger value="docs">첨부 서류</TabsTrigger>
+        </TabsList>
+        <TabsContent value="info" className="p-4">
+          민원 정보 내용
+        </TabsContent>
+        <TabsContent value="history" className="p-4">
+          처리 이력 내용
+        </TabsContent>
+        <TabsContent value="docs" className="p-4">
+          첨부 서류 내용
+        </TabsContent>
+      </Tabs>
+    </div>
+  )
+}
+
 export const Default: Story = {
   render: (args) => (
     <Tabs {...args}>
       <TabsList>
-        <TabsTrigger value="info">Request details</TabsTrigger>
-        <TabsTrigger value="history">History</TabsTrigger>
-        <TabsTrigger value="docs">Documents</TabsTrigger>
+        <TabsTrigger value="info">민원 정보</TabsTrigger>
+        <TabsTrigger value="history">처리 이력</TabsTrigger>
+        <TabsTrigger value="docs">첨부 서류</TabsTrigger>
       </TabsList>
       <TabsContent value="info" className="p-4">
-        <p className="text-text-default">Review the primary request information.</p>
+        <p className="text-text-default">주요 민원 정보를 확인합니다.</p>
       </TabsContent>
       <TabsContent value="history" className="p-4">
-        <p className="text-text-default">Review the processing timeline and status history.</p>
+        <p className="text-text-default">처리 일정과 상태 변경 이력을 확인합니다.</p>
       </TabsContent>
       <TabsContent value="docs" className="p-4">
-        <p className="text-text-default">Review attached files and submitted materials.</p>
+        <p className="text-text-default">제출한 첨부 서류를 확인합니다.</p>
       </TabsContent>
     </Tabs>
   ),
@@ -98,52 +126,27 @@ export const Default: Story = {
 }
 
 export const Controlled: Story = {
-  render: () => {
-    const [value, setValue] = useState('info')
-
-    return (
-      <div className="flex flex-col gap-4">
-        <p className="text-sm text-text-subtle">
-          Active tab: <strong>{value}</strong>
-        </p>
-        <Tabs value={value} onValueChange={setValue}>
-          <TabsList>
-            <TabsTrigger value="info">Request details</TabsTrigger>
-            <TabsTrigger value="history">History</TabsTrigger>
-            <TabsTrigger value="docs">Documents</TabsTrigger>
-          </TabsList>
-          <TabsContent value="info" className="p-4">
-            Request details content
-          </TabsContent>
-          <TabsContent value="history" className="p-4">
-            History content
-          </TabsContent>
-          <TabsContent value="docs" className="p-4">
-            Documents content
-          </TabsContent>
-        </Tabs>
-      </div>
-    )
-  },
+  name: '제어형',
+  render: () => <ControlledTabsStory />,
 }
 
 export const Vertical: Story = {
-  name: 'Vertical Layout',
+  name: '세로 레이아웃',
   render: (args) => (
     <Tabs {...args} className="min-h-48">
       <TabsList>
-        <TabsTrigger value="personal">Personal info</TabsTrigger>
-        <TabsTrigger value="contact">Contact</TabsTrigger>
-        <TabsTrigger value="address">Address</TabsTrigger>
+        <TabsTrigger value="personal">기본 정보</TabsTrigger>
+        <TabsTrigger value="contact">연락처</TabsTrigger>
+        <TabsTrigger value="address">주소</TabsTrigger>
       </TabsList>
       <TabsContent value="personal" className="flex-1 p-4">
-        <p className="text-text-default">Personal information panel</p>
+        <p className="text-text-default">기본 정보 패널</p>
       </TabsContent>
       <TabsContent value="contact" className="flex-1 p-4">
-        <p className="text-text-default">Contact information panel</p>
+        <p className="text-text-default">연락처 정보 패널</p>
       </TabsContent>
       <TabsContent value="address" className="flex-1 p-4">
-        <p className="text-text-default">Address information panel</p>
+        <p className="text-text-default">주소 정보 패널</p>
       </TabsContent>
     </Tabs>
   ),
@@ -154,22 +157,22 @@ export const Vertical: Story = {
 }
 
 export const ManualActivation: Story = {
-  name: 'Manual Activation',
+  name: '수동 활성화',
   render: (args) => (
     <Tabs {...args}>
       <TabsList>
-        <TabsTrigger value="tab1">Tab 1</TabsTrigger>
-        <TabsTrigger value="tab2">Tab 2</TabsTrigger>
-        <TabsTrigger value="tab3">Tab 3</TabsTrigger>
+        <TabsTrigger value="tab1">탭 1</TabsTrigger>
+        <TabsTrigger value="tab2">탭 2</TabsTrigger>
+        <TabsTrigger value="tab3">탭 3</TabsTrigger>
       </TabsList>
       <TabsContent value="tab1" className="p-4">
-        Focus moves with the arrow keys, but activation waits for Enter or Space.
+        방향키로 포커스만 이동하고, Enter 또는 Space를 눌러야 활성화됩니다.
       </TabsContent>
       <TabsContent value="tab2" className="p-4">
-        Tab 2 content
+        탭 2 내용
       </TabsContent>
       <TabsContent value="tab3" className="p-4">
-        Tab 3 content
+        탭 3 내용
       </TabsContent>
     </Tabs>
   ),
@@ -180,79 +183,57 @@ export const ManualActivation: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          'Manual activation is useful when changing tabs triggers heavier rendering or data loading.',
+        story: '탭 전환 시 무거운 렌더링이나 데이터 로딩이 발생한다면 `manual` 모드가 적합합니다.',
       },
     },
   },
 }
 
 export const WithDisabledTab: Story = {
-  name: 'With Disabled Tab',
+  name: '비활성 탭 포함',
   render: () => (
     <Tabs defaultValue="available">
       <TabsList>
-        <TabsTrigger value="available">Available</TabsTrigger>
+        <TabsTrigger value="available">이용 가능</TabsTrigger>
         <TabsTrigger value="disabled" disabled>
-          Coming soon
+          준비 중
         </TabsTrigger>
-        <TabsTrigger value="other">Other</TabsTrigger>
+        <TabsTrigger value="other">기타</TabsTrigger>
       </TabsList>
       <TabsContent value="available" className="p-4">
-        Available service content.
+        현재 이용 가능한 서비스 내용입니다.
       </TabsContent>
       <TabsContent value="disabled" className="p-4">
-        Disabled content should not become active.
+        비활성 탭의 패널은 활성화되면 안 됩니다.
       </TabsContent>
       <TabsContent value="other" className="p-4">
-        Alternative service content.
+        다른 서비스 관련 내용입니다.
       </TabsContent>
     </Tabs>
   ),
 }
 
 export const KeepMounted: Story = {
-  name: 'Keep Mounted',
+  name: '패널 유지',
   render: () => (
     <Tabs defaultValue="tab1">
       <TabsList>
-        <TabsTrigger value="tab1">Tab 1</TabsTrigger>
-        <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+        <TabsTrigger value="tab1">탭 1</TabsTrigger>
+        <TabsTrigger value="tab2">탭 2</TabsTrigger>
       </TabsList>
       <TabsContent value="tab1" keepMounted className="p-4">
-        Tab 1 stays in the DOM and is only hidden when inactive.
+        탭 1 패널은 DOM에 유지된 채 숨김 처리됩니다.
       </TabsContent>
       <TabsContent value="tab2" keepMounted className="p-4">
-        Use `keepMounted` when hidden panels need to preserve local state.
+        숨겨진 패널의 로컬 상태를 유지해야 할 때 `keepMounted`를 사용합니다.
       </TabsContent>
     </Tabs>
   ),
   parameters: {
     docs: {
       description: {
-        story:
-          'When `keepMounted` is enabled, inactive panels remain mounted instead of being removed from the DOM.',
+        story: '`keepMounted`를 켜면 비활성 패널도 DOM에서 제거되지 않고 유지됩니다.',
       },
     },
   },
-}
-
-export const ManyTabs: Story = {
-  name: 'Many Tabs',
-  render: () => (
-    <Tabs defaultValue="tab1">
-      <TabsList>
-        {Array.from({ length: 6 }, (_, index) => (
-          <TabsTrigger key={index} value={`tab${index + 1}`}>
-            Tab {index + 1}
-          </TabsTrigger>
-        ))}
-      </TabsList>
-      {Array.from({ length: 6 }, (_, index) => (
-        <TabsContent key={index} value={`tab${index + 1}`} className="p-4">
-          Content for tab {index + 1}.
-        </TabsContent>
-      ))}
-    </Tabs>
-  ),
 }

@@ -2,39 +2,39 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 const colorGroups = [
   {
-    title: 'Brand',
+    title: '브랜드',
     items: [
-      ['Primary', 'var(--color-primary)'],
-      ['Primary hover', 'var(--color-primary-hover)'],
-      ['Primary active', 'var(--color-primary-active)'],
-      ['Primary subtle', 'var(--color-primary-subtle)'],
+      ['기본', 'var(--color-primary)'],
+      ['호버', 'var(--color-primary-hover)'],
+      ['활성', 'var(--color-primary-active)'],
+      ['은은한 강조', 'var(--color-primary-subtle)'],
     ],
   },
   {
-    title: 'Text',
+    title: '텍스트',
     items: [
-      ['Default', 'var(--color-text-default)'],
-      ['Subtle', 'var(--color-text-subtle)'],
-      ['Muted', 'var(--color-text-muted)'],
-      ['Inverse', 'var(--color-text-inverse)'],
+      ['기본', 'var(--color-text-default)'],
+      ['보조', 'var(--color-text-subtle)'],
+      ['약한 강조', 'var(--color-text-muted)'],
+      ['반전', 'var(--color-text-inverse)'],
     ],
   },
   {
-    title: 'Surface',
+    title: '표면',
     items: [
-      ['Default background', 'var(--color-bg-default)'],
-      ['Subtle background', 'var(--color-bg-subtle)'],
-      ['Muted background', 'var(--color-bg-muted)'],
-      ['Default border', 'var(--color-border-default)'],
+      ['기본 배경', 'var(--color-bg-default)'],
+      ['보조 배경', 'var(--color-bg-subtle)'],
+      ['약한 배경', 'var(--color-bg-muted)'],
+      ['기본 테두리', 'var(--color-border-default)'],
     ],
   },
   {
-    title: 'Status',
+    title: '상태',
     items: [
-      ['Info', 'var(--color-status-info)'],
-      ['Success', 'var(--color-status-success)'],
-      ['Warning', 'var(--color-status-warning)'],
-      ['Error', 'var(--color-status-error)'],
+      ['안내', 'var(--color-status-info)'],
+      ['성공', 'var(--color-status-success)'],
+      ['주의', 'var(--color-status-warning)'],
+      ['오류', 'var(--color-status-error)'],
     ],
   },
 ]
@@ -65,18 +65,17 @@ function TokensPage() {
       <div className="mx-auto flex max-w-6xl flex-col gap-8">
         <header className="rounded-dialog border border-border-default bg-bg-default p-8 shadow-card">
           <p className="text-sm font-semibold uppercase tracking-[0.12em] text-primary">
-            Foundations
+            기초
           </p>
-          <h1 className="mt-3 text-4xl font-bold">Design Tokens</h1>
+          <h1 className="mt-3 text-4xl font-bold">디자인 토큰</h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-text-subtle">
-            Raw tokens define base scales. Semantic tokens map those scales into
-            component-facing values such as surface, text, border, status, and
-            motion primitives.
+            원시 토큰은 기본 스케일을 정의하고, 시맨틱 토큰은 이를 배경, 텍스트, 테두리,
+            상태, 모션 같은 컴포넌트 친화적 값으로 매핑합니다.
           </p>
         </header>
 
         <section className="rounded-dialog border border-border-default bg-bg-default p-8 shadow-card">
-          <h2 className="text-2xl font-semibold">Color tokens</h2>
+          <h2 className="text-2xl font-semibold">색상 토큰</h2>
           <div className="mt-6 grid gap-6 lg:grid-cols-2">
             {colorGroups.map((group) => (
               <article key={group.title} className="rounded-card border border-border-default p-5">
@@ -106,7 +105,7 @@ function TokensPage() {
 
         <section className="grid gap-8 xl:grid-cols-2">
           <article className="rounded-dialog border border-border-default bg-bg-default p-8 shadow-card">
-            <h2 className="text-2xl font-semibold">Spacing scale</h2>
+            <h2 className="text-2xl font-semibold">간격 스케일</h2>
             <div className="mt-6 flex flex-col gap-3">
               {spacingScale.map((token) => (
                 <div key={token} className="flex items-center gap-4">
@@ -122,7 +121,7 @@ function TokensPage() {
           </article>
 
           <article className="rounded-dialog border border-border-default bg-bg-default p-8 shadow-card">
-            <h2 className="text-2xl font-semibold">Radius scale</h2>
+            <h2 className="text-2xl font-semibold">모서리 반경 스케일</h2>
             <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3">
               {radiusScale.map((token) => (
                 <div
@@ -142,13 +141,13 @@ function TokensPage() {
         </section>
 
         <section className="rounded-dialog border border-border-default bg-bg-default p-8 shadow-card">
-          <h2 className="text-2xl font-semibold">Semantic guidance</h2>
+          <h2 className="text-2xl font-semibold">시맨틱 사용 가이드</h2>
           <div className="mt-5 grid gap-4 md:grid-cols-2">
             {[
-              'Components should consume semantic tokens first and avoid binding directly to raw scales.',
-              'Dark mode is driven by data-theme and mirrored by prefers-color-scheme fallback.',
-              'Touch targets should respect the 44px minimum interaction size for critical controls.',
-              'Motion tokens should be paired with reduced-motion fallbacks in interactive components.',
+              '컴포넌트는 원시 스케일보다는 시맨틱 토큰을 우선 사용해야 합니다.',
+              '다크 모드는 data-theme를 기준으로 동작하고, 필요하면 prefers-color-scheme를 보조로 활용합니다.',
+              '중요한 컨트롤은 44px 이상의 터치 타깃 기준을 고려합니다.',
+              '모션 토큰은 상호작용 컴포넌트에서 reduced-motion 대응과 함께 사용합니다.',
             ].map((item) => (
               <div
                 key={item}
@@ -165,7 +164,7 @@ function TokensPage() {
 }
 
 const meta = {
-  title: 'Foundations/Tokens',
+  title: '기초/토큰',
   component: TokensPage,
   tags: ['autodocs'],
   parameters: {

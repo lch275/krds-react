@@ -13,9 +13,18 @@ import {
 import { Button } from '@/components/ui/Button/Button'
 
 const meta: Meta<typeof BottomSheet> = {
-  title: 'Overlays/BottomSheet',
+  title: '오버레이/바텀시트',
   component: BottomSheet,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+**BottomSheet**는 모바일 환경에서 선택이나 확인 작업을 집중해서 처리할 수 있게 도와주는 하단 시트 패턴입니다.
+        `,
+      },
+    },
+  },
 }
 
 export default meta
@@ -25,24 +34,24 @@ export const Default: Story = {
   render: () => (
     <BottomSheet>
       <BottomSheetTrigger>
-        <Button>Open bottom sheet</Button>
+        <Button>하단 시트 열기</Button>
       </BottomSheetTrigger>
       <BottomSheetContent>
         <BottomSheetHeader>
-          <BottomSheetTitle>Select a contact channel</BottomSheetTitle>
+          <BottomSheetTitle>연락 수단 선택</BottomSheetTitle>
           <BottomSheetDescription>
-            Bottom sheets are useful for focused mobile selection tasks.
+            모바일에서 짧은 선택 작업을 처리할 때 적합합니다.
           </BottomSheetDescription>
         </BottomSheetHeader>
         <BottomSheetBody>
           <div className="grid gap-2">
-            <Button variant="secondary">Phone consultation</Button>
-            <Button variant="secondary">Email response</Button>
+            <Button variant="secondary">전화 상담</Button>
+            <Button variant="secondary">이메일 회신</Button>
           </div>
         </BottomSheetBody>
         <BottomSheetFooter>
           <BottomSheetClose>
-            <Button variant="ghost">Close</Button>
+            <Button variant="ghost">닫기</Button>
           </BottomSheetClose>
         </BottomSheetFooter>
       </BottomSheetContent>

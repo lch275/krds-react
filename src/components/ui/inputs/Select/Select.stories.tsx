@@ -3,19 +3,19 @@ import { Select } from './Select'
 import { Field, FieldDescription, FieldError, FieldLabel } from '@/components/ui/Field/Field'
 
 const meta: Meta<typeof Select> = {
-  title: 'UI/Inputs/Select',
+  title: '인터페이스/입력/셀렉트',
   component: Select,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: `
-**Select** wraps the native \`select\` element for accessible option picking. It works especially well with \`Field\` when descriptive text and validation are needed.
+**Select**는 네이티브 \`select\` 요소를 감싸는 선택 컴포넌트입니다. 설명 텍스트나 검증 메시지가 필요한 경우 \`Field\`와 함께 쓰기 좋습니다.
 
-## Notes
-- Based on the native \`select\` element
-- Supports \`option\` and \`optgroup\` children
-- Keeps keyboard and screen reader behavior aligned with the platform
+## 참고
+- 네이티브 \`select\` 요소를 기반으로 합니다.
+- \`option\`, \`optgroup\` 자식을 지원합니다.
+- 키보드 및 스크린 리더 동작이 플랫폼 기본 동작과 일치합니다.
         `,
       },
     },
@@ -24,30 +24,30 @@ const meta: Meta<typeof Select> = {
     inputSize: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
-      description: 'Select size.',
+      description: '셀렉트 크기입니다.',
       table: { defaultValue: { summary: 'md' } },
     },
     invalid: {
       control: 'boolean',
-      description: 'Invalid state.',
+      description: '오류 상태입니다.',
       table: { defaultValue: { summary: 'false' } },
     },
     disabled: {
       control: 'boolean',
-      description: 'Disabled state.',
+      description: '비활성 상태입니다.',
       table: { defaultValue: { summary: 'false' } },
     },
     required: {
       control: 'boolean',
-      description: 'Marks the field as required.',
+      description: '필수 입력으로 표시합니다.',
     },
     'aria-label': {
       control: 'text',
-      description: 'Accessible name for standalone usage.',
+      description: '단독 사용 시 필요한 접근성 이름입니다.',
     },
     className: {
       control: 'text',
-      description: 'Additional Tailwind classes.',
+      description: '추가 Tailwind 클래스입니다.',
     },
   },
 }
@@ -57,17 +57,17 @@ type Story = StoryObj<typeof Select>
 
 const DefaultOptions = () => (
   <>
-    <option value="">Please select</option>
-    <option value="complaint">Complaint</option>
-    <option value="inquiry">Inquiry</option>
-    <option value="suggestion">Suggestion</option>
-    <option value="other">Other</option>
+    <option value="">선택하세요</option>
+    <option value="complaint">불편 신고</option>
+    <option value="inquiry">문의</option>
+    <option value="suggestion">제안</option>
+    <option value="other">기타</option>
   </>
 )
 
 export const Default: Story = {
   render: (args) => (
-    <Select {...args} aria-label="Request type">
+    <Select {...args} aria-label="민원 유형">
       <DefaultOptions />
     </Select>
   ),
@@ -78,27 +78,9 @@ export const Default: Story = {
   },
 }
 
-export const Small: Story = {
-  render: (args) => (
-    <Select {...args} aria-label="Category">
-      <DefaultOptions />
-    </Select>
-  ),
-  args: { inputSize: 'sm' },
-}
-
-export const Large: Story = {
-  render: (args) => (
-    <Select {...args} aria-label="Request type">
-      <DefaultOptions />
-    </Select>
-  ),
-  args: { inputSize: 'lg' },
-}
-
 export const Invalid: Story = {
   render: (args) => (
-    <Select {...args} aria-label="Request type">
+    <Select {...args} aria-label="민원 유형">
       <DefaultOptions />
     </Select>
   ),
@@ -107,22 +89,22 @@ export const Invalid: Story = {
 
 export const Disabled: Story = {
   render: (args) => (
-    <Select {...args} aria-label="Processing status">
-      <option value="processing">Processing</option>
+    <Select {...args} aria-label="처리 상태">
+      <option value="processing">처리 중</option>
     </Select>
   ),
   args: { disabled: true },
 }
 
 export const WithField: Story = {
-  name: 'With Field',
+  name: 'Field와 함께 사용',
   render: (args) => (
     <Field required>
-      <FieldLabel>Request type</FieldLabel>
+      <FieldLabel>민원 유형</FieldLabel>
       <Select {...args}>
         <DefaultOptions />
       </Select>
-      <FieldDescription>Select the category that best matches the request.</FieldDescription>
+      <FieldDescription>신청 내용에 가장 가까운 유형을 선택하세요.</FieldDescription>
     </Field>
   ),
   args: {
@@ -133,54 +115,54 @@ export const WithField: Story = {
 }
 
 export const WithFieldError: Story = {
-  name: 'With Field Error',
+  name: 'Field 오류 상태',
   render: () => (
     <Field required>
-      <FieldLabel>Request type</FieldLabel>
+      <FieldLabel>민원 유형</FieldLabel>
       <Select>
-        <option value="">Please select</option>
-        <option value="complaint">Complaint</option>
+        <option value="">선택하세요</option>
+        <option value="complaint">불편 신고</option>
       </Select>
-      <FieldError>Please select a request type.</FieldError>
+      <FieldError>민원 유형을 선택하세요.</FieldError>
     </Field>
   ),
 }
 
 export const WithOptgroup: Story = {
-  name: 'With Optgroup',
+  name: '옵션 그룹',
   render: () => (
     <Field>
-      <FieldLabel>Region</FieldLabel>
+      <FieldLabel>지역</FieldLabel>
       <Select>
-        <option value="">Please select</option>
-        <optgroup label="Capital area">
-          <option value="seoul">Seoul</option>
-          <option value="incheon">Incheon</option>
-          <option value="gyeonggi">Gyeonggi-do</option>
+        <option value="">선택하세요</option>
+        <optgroup label="수도권">
+          <option value="seoul">서울</option>
+          <option value="incheon">인천</option>
+          <option value="gyeonggi">경기도</option>
         </optgroup>
-        <optgroup label="Central area">
-          <option value="daejeon">Daejeon</option>
-          <option value="sejong">Sejong</option>
-          <option value="chungbuk">Chungcheongbuk-do</option>
-          <option value="chungnam">Chungcheongnam-do</option>
+        <optgroup label="충청권">
+          <option value="daejeon">대전</option>
+          <option value="sejong">세종</option>
+          <option value="chungbuk">충청북도</option>
+          <option value="chungnam">충청남도</option>
         </optgroup>
       </Select>
     </Field>
   ),
 }
 
-export const AllSizes: Story = {
-  name: 'All Sizes',
+export const Sizes: Story = {
+  name: '크기 비교',
   render: () => (
     <div className="flex flex-col gap-4">
-      <Select aria-label="Small select" inputSize="sm">
+      <Select aria-label="작은 셀렉트" inputSize="sm">
         <option>sm (32px)</option>
       </Select>
-      <Select aria-label="Medium select" inputSize="md">
-        <option>md (40px, default)</option>
+      <Select aria-label="기본 셀렉트" inputSize="md">
+        <option>md (40px, 기본값)</option>
       </Select>
-      <Select aria-label="Large select" inputSize="lg">
-        <option>lg (44px touch target)</option>
+      <Select aria-label="큰 셀렉트" inputSize="lg">
+        <option>lg (44px 터치 타깃)</option>
       </Select>
     </div>
   ),

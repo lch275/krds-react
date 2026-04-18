@@ -2,19 +2,19 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Skeleton } from './Skeleton'
 
 const meta: Meta<typeof Skeleton> = {
-  title: 'Feedback/Skeleton',
+  title: '피드백/스켈레톤',
   component: Skeleton,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: `
-**Skeleton** reserves layout space while content is still loading.
+**Skeleton**은 콘텐츠가 아직 로딩 중일 때 최종 레이아웃 자리를 미리 확보하는 플레이스홀더입니다.
 
-## Accessibility notes
-- Use skeletons only as a temporary placeholder
-- Keep the loading layout close to the final structure
-- Avoid exposing skeleton blocks as meaningful content to assistive technology
+## 접근성 메모
+- 스켈레톤은 임시 로딩 표현으로만 사용합니다.
+- 실제 완성 레이아웃과 최대한 비슷한 구조를 유지합니다.
+- 보조 기술에는 의미 있는 콘텐츠처럼 노출하지 않습니다.
         `,
       },
     },
@@ -22,7 +22,7 @@ const meta: Meta<typeof Skeleton> = {
   argTypes: {
     className: {
       control: 'text',
-      description: 'Additional Tailwind classes that define the placeholder shape.',
+      description: '플레이스홀더 형태를 정의하는 추가 Tailwind 클래스입니다.',
     },
   },
 }

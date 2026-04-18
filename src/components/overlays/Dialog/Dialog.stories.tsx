@@ -16,16 +16,16 @@ import { Field, FieldLabel } from '@/components/ui/Field/Field'
 import { Input } from '@/components/ui/inputs/Input/Input'
 
 const meta: Meta<typeof Dialog> = {
-  title: 'Overlays/Dialog',
+  title: '오버레이/대화상자',
   component: Dialog,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: `
-**Dialog** provides a modal surface with focus management, Escape handling, and labelled content wiring.
+**Dialog**는 포커스 관리, Escape 처리, 제목/설명 연결을 포함한 모달 대화상자 패턴을 제공합니다.
 
-## Compound structure
+## 구성 예시
 \`\`\`tsx
 <Dialog>
   <DialogTrigger><Button>Open</Button></DialogTrigger>
@@ -42,12 +42,12 @@ const meta: Meta<typeof Dialog> = {
 </Dialog>
 \`\`\`
 
-## Accessibility notes
-- Uses \`role="dialog"\` and \`aria-modal="true"\`
-- Connects \`DialogTitle\` through \`aria-labelledby\`
-- Keeps focus inside the dialog while open
-- Closes on Escape by default
-- Restores focus to the trigger after closing
+## 접근성 메모
+- \`role="dialog"\`, \`aria-modal="true"\`를 사용합니다.
+- \`DialogTitle\`을 \`aria-labelledby\`로 연결합니다.
+- 열린 동안 포커스를 다이얼로그 내부에 유지합니다.
+- 기본적으로 Escape 키로 닫을 수 있습니다.
+- 닫힌 뒤에는 트리거로 포커스를 되돌립니다.
         `,
       },
     },
@@ -55,11 +55,11 @@ const meta: Meta<typeof Dialog> = {
   argTypes: {
     open: {
       control: 'boolean',
-      description: 'Controlled open state.',
+      description: '제어형 열림 상태입니다.',
     },
     defaultOpen: {
       control: 'boolean',
-      description: 'Initial uncontrolled open state.',
+      description: '초기 비제어 열림 상태입니다.',
       table: { defaultValue: { summary: 'false' } },
     },
   },
@@ -68,27 +68,59 @@ const meta: Meta<typeof Dialog> = {
 export default meta
 type Story = StoryObj<typeof Dialog>
 
+function ControlledDialogStory() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="flex gap-2">
+        <Button onClick={() => setOpen(true)}>열기</Button>
+        <Button variant="secondary" onClick={() => setOpen(false)}>
+          닫기
+        </Button>
+      </div>
+      <p className="text-sm text-text-subtle">상태: {open ? '열림' : '닫힘'}</p>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>제어형 대화상자</DialogTitle>
+            <DialogClose />
+          </DialogHeader>
+          <DialogBody>
+            <DialogDescription>
+              외부 React 상태값으로 열림 여부를 제어하는 예시입니다.
+            </DialogDescription>
+          </DialogBody>
+          <DialogFooter>
+            <Button onClick={() => setOpen(false)}>닫기</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
+  )
+}
+
 export const Default: Story = {
   render: (args) => (
     <Dialog {...args}>
       <DialogTrigger>
-        <Button>Open dialog</Button>
+        <Button>대화상자 열기</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Confirm action</DialogTitle>
+          <DialogTitle>작업 확인</DialogTitle>
           <DialogClose />
         </DialogHeader>
         <DialogBody>
           <DialogDescription>
-            Do you want to continue? This action cannot be undone.
+            계속 진행하시겠습니까? 이 작업은 되돌릴 수 없습니다.
           </DialogDescription>
         </DialogBody>
         <DialogFooter>
           <DialogClose>
-            <Button variant="secondary">Cancel</Button>
+            <Button variant="secondary">취소</Button>
           </DialogClose>
-          <Button variant="primary">Confirm</Button>
+          <Button variant="primary">확인</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -99,64 +131,35 @@ export const Default: Story = {
 }
 
 export const Controlled: Story = {
-  render: () => {
-    const [open, setOpen] = useState(false)
-
-    return (
-      <div className="flex flex-col gap-4">
-        <div className="flex gap-2">
-          <Button onClick={() => setOpen(true)}>Open</Button>
-          <Button variant="secondary" onClick={() => setOpen(false)}>
-            Close
-          </Button>
-        </div>
-        <p className="text-sm text-text-subtle">State: {open ? 'Open' : 'Closed'}</p>
-        <Dialog open={open} onOpenChange={setOpen}>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Controlled dialog</DialogTitle>
-              <DialogClose />
-            </DialogHeader>
-            <DialogBody>
-              <DialogDescription>
-                This dialog is controlled by an external React state value.
-              </DialogDescription>
-            </DialogBody>
-            <DialogFooter>
-              <Button onClick={() => setOpen(false)}>Close</Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-      </div>
-    )
-  },
+  name: '제어형',
+  render: () => <ControlledDialogStory />,
 }
 
 export const DeleteConfirm: Story = {
-  name: 'Delete Confirmation',
+  name: '삭제 확인',
   render: () => (
     <Dialog>
       <DialogTrigger>
-        <Button variant="danger">Delete request</Button>
+        <Button variant="danger">민원 삭제</Button>
       </DialogTrigger>
       <DialogContent closeOnOverlayClick={false}>
         <DialogHeader>
-          <DialogTitle>Delete request</DialogTitle>
+          <DialogTitle>민원 삭제</DialogTitle>
           <DialogClose />
         </DialogHeader>
         <DialogBody>
           <DialogDescription>
-            Are you sure you want to delete request &apos;2024-KR-001234&apos;?
+            민원 번호 &apos;2024-KR-001234&apos;를 삭제하시겠습니까?
           </DialogDescription>
           <p className="mt-2 text-sm text-status-error">
-            Deleted requests cannot be restored.
+            삭제한 민원은 복구할 수 없습니다.
           </p>
         </DialogBody>
         <DialogFooter>
           <DialogClose>
-            <Button variant="secondary">Cancel</Button>
+            <Button variant="secondary">취소</Button>
           </DialogClose>
-          <Button variant="danger">Delete</Button>
+          <Button variant="danger">삭제</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -164,41 +167,41 @@ export const DeleteConfirm: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Use `closeOnOverlayClick={false}` when accidental dismissal is too risky.',
+        story: '실수로 닫히면 안 되는 확인 대화상자에는 `closeOnOverlayClick={false}`를 사용합니다.',
       },
     },
   },
 }
 
 export const FormDialog: Story = {
-  name: 'Form Dialog',
+  name: '폼 대화상자',
   render: () => (
     <Dialog>
       <DialogTrigger>
-        <Button>Edit request</Button>
+        <Button>민원 수정</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit request details</DialogTitle>
+          <DialogTitle>민원 정보 수정</DialogTitle>
           <DialogClose />
         </DialogHeader>
         <DialogBody>
           <div className="flex flex-col gap-4">
             <Field required>
-              <FieldLabel>Name</FieldLabel>
+              <FieldLabel>이름</FieldLabel>
               <Input defaultValue="Kim Minjun" />
             </Field>
             <Field required>
-              <FieldLabel>Contact</FieldLabel>
+              <FieldLabel>연락처</FieldLabel>
               <Input type="tel" defaultValue="010-1234-5678" />
             </Field>
           </div>
         </DialogBody>
         <DialogFooter>
           <DialogClose>
-            <Button variant="secondary">Cancel</Button>
+            <Button variant="secondary">취소</Button>
           </DialogClose>
-          <Button variant="primary">Save</Button>
+          <Button variant="primary">저장</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -206,62 +209,33 @@ export const FormDialog: Story = {
 }
 
 export const LongContent: Story = {
-  name: 'Long Content',
+  name: '긴 내용',
   render: () => (
     <Dialog>
       <DialogTrigger>
-        <Button>Open privacy policy</Button>
+        <Button>개인정보 처리방침 열기</Button>
       </DialogTrigger>
       <DialogContent className="max-h-[80vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Privacy policy</DialogTitle>
+          <DialogTitle>개인정보 처리방침</DialogTitle>
           <DialogClose />
         </DialogHeader>
         <DialogBody>
-          <DialogDescription>This policy becomes effective on January 1, 2024.</DialogDescription>
+          <DialogDescription>이 방침은 2024년 1월 1일부터 적용됩니다.</DialogDescription>
           {Array.from({ length: 10 }, (_, index) => (
             <div key={index} className="mt-4">
-              <h3 className="font-semibold text-text-default">Section {index + 1}</h3>
+              <h3 className="font-semibold text-text-default">항목 {index + 1}</h3>
               <p className="mt-1 text-sm text-text-subtle">
-                This section explains what personal information is collected, why it is
-                processed, and how long it is retained by the service.
+                수집하는 개인정보 항목, 처리 목적, 보관 기간에 대한 안내 예시 문구입니다.
               </p>
             </div>
           ))}
         </DialogBody>
         <DialogFooter>
           <DialogClose>
-            <Button variant="secondary">Close</Button>
+            <Button variant="secondary">닫기</Button>
           </DialogClose>
-          <Button variant="primary">Agree</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  ),
-}
-
-export const WithoutOverlayClose: Story = {
-  name: 'Overlay Close Disabled',
-  render: () => (
-    <Dialog>
-      <DialogTrigger>
-        <Button>Open critical action</Button>
-      </DialogTrigger>
-      <DialogContent closeOnOverlayClick={false}>
-        <DialogHeader>
-          <DialogTitle>Important confirmation</DialogTitle>
-        </DialogHeader>
-        <DialogBody>
-          <DialogDescription>
-            Clicking the overlay will not dismiss this dialog. Close it with Escape or one
-            of the visible actions.
-          </DialogDescription>
-        </DialogBody>
-        <DialogFooter>
-          <DialogClose>
-            <Button variant="secondary">Cancel</Button>
-          </DialogClose>
-          <Button>Confirm</Button>
+          <Button variant="primary">동의</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

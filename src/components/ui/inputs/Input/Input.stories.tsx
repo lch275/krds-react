@@ -3,19 +3,19 @@ import { Input } from './Input'
 import { Field, FieldDescription, FieldError, FieldLabel } from '@/components/ui/Field/Field'
 
 const meta: Meta<typeof Input> = {
-  title: 'UI/Inputs/Input',
+  title: '인터페이스/입력/텍스트 입력',
   component: Input,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: `
-**Input** is the base single-line text field. When used inside \`Field\`, labels, descriptions, and errors are wired automatically.
+**Input**은 한 줄 텍스트 입력을 위한 기본 필드입니다. \`Field\`와 함께 사용하면 레이블, 설명, 오류 메시지가 자동으로 연결됩니다.
 
-## Accessibility notes
-- Standalone usage should provide \`aria-label\` or \`aria-labelledby\`
-- \`invalid\` reflects both semantics and visual state
-- \`disabled\` can be set directly or inherited from \`Field\`
+## 접근성 메모
+- 단독 사용 시에는 \`aria-label\` 또는 \`aria-labelledby\`를 제공합니다.
+- \`invalid\`는 시각 상태와 의미를 함께 반영합니다.
+- \`disabled\`는 직접 설정하거나 \`Field\`에서 상속받을 수 있습니다.
         `,
       },
     },
@@ -24,40 +24,40 @@ const meta: Meta<typeof Input> = {
     inputSize: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
-      description: 'Input size.',
+      description: '입력 필드 크기입니다.',
       table: { defaultValue: { summary: 'md' } },
     },
     invalid: {
       control: 'boolean',
-      description: 'Invalid state.',
+      description: '오류 상태입니다.',
       table: { defaultValue: { summary: 'false' } },
     },
     disabled: {
       control: 'boolean',
-      description: 'Disabled state.',
+      description: '비활성 상태입니다.',
       table: { defaultValue: { summary: 'false' } },
     },
     required: {
       control: 'boolean',
-      description: 'Marks the field as required.',
+      description: '필수 입력으로 표시합니다.',
     },
     placeholder: {
       control: 'text',
-      description: 'Placeholder text.',
+      description: '플레이스홀더 텍스트입니다.',
     },
     type: {
       control: 'select',
       options: ['text', 'email', 'password', 'number', 'tel', 'url', 'search', 'date'],
-      description: 'Native input type.',
+      description: '네이티브 input 타입입니다.',
       table: { defaultValue: { summary: 'text' } },
     },
     'aria-label': {
       control: 'text',
-      description: 'Accessible name for standalone usage.',
+      description: '단독 사용 시 필요한 접근성 이름입니다.',
     },
     className: {
       control: 'text',
-      description: 'Additional Tailwind classes.',
+      description: '추가 Tailwind 클래스입니다.',
     },
   },
 }
@@ -67,39 +67,15 @@ type Story = StoryObj<typeof Input>
 
 export const Default: Story = {
   args: {
-    'aria-label': 'Name',
-    placeholder: 'Enter your name',
+    'aria-label': '이름',
+    placeholder: '이름을 입력하세요',
     inputSize: 'md',
-  },
-}
-
-export const Small: Story = {
-  args: {
-    'aria-label': 'Search',
-    placeholder: 'Search keyword',
-    inputSize: 'sm',
-  },
-}
-
-export const Medium: Story = {
-  args: {
-    'aria-label': 'Name',
-    placeholder: 'Enter your name',
-    inputSize: 'md',
-  },
-}
-
-export const Large: Story = {
-  args: {
-    'aria-label': 'Name',
-    placeholder: 'Enter your name',
-    inputSize: 'lg',
   },
 }
 
 export const Invalid: Story = {
   args: {
-    'aria-label': 'Email',
+    'aria-label': '이메일',
     placeholder: 'example@gov.kr',
     invalid: true,
   },
@@ -107,7 +83,7 @@ export const Invalid: Story = {
 
 export const Disabled: Story = {
   args: {
-    'aria-label': 'Request ID',
+    'aria-label': '민원 번호',
     value: '2024-KR-001234',
     disabled: true,
   },
@@ -115,19 +91,19 @@ export const Disabled: Story = {
 
 export const Password: Story = {
   args: {
-    'aria-label': 'Password',
+    'aria-label': '비밀번호',
     type: 'password',
-    placeholder: 'Enter your password',
+    placeholder: '비밀번호를 입력하세요',
   },
 }
 
 export const WithField: Story = {
-  name: 'With Field',
+  name: 'Field와 함께 사용',
   render: (args) => (
     <Field required>
-      <FieldLabel>Email</FieldLabel>
+      <FieldLabel>이메일</FieldLabel>
       <Input {...args} type="email" placeholder="example@gov.kr" />
-      <FieldDescription>Use an email address that can receive service updates.</FieldDescription>
+      <FieldDescription>안내 메일을 받을 수 있는 주소를 입력하세요.</FieldDescription>
     </Field>
   ),
   args: {
@@ -138,31 +114,30 @@ export const WithField: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          'Inside `Field`, the input is labelled automatically so a separate `aria-label` is not needed.',
+        story: '`Field` 내부에서는 레이블이 자동 연결되므로 별도의 `aria-label`이 필요하지 않습니다.',
       },
     },
   },
 }
 
 export const WithFieldError: Story = {
-  name: 'With Field Error',
+  name: 'Field 오류 상태',
   render: () => (
     <Field required>
-      <FieldLabel>Email</FieldLabel>
+      <FieldLabel>이메일</FieldLabel>
       <Input type="email" placeholder="example@gov.kr" />
-      <FieldError>Please provide a valid email address.</FieldError>
+      <FieldError>올바른 이메일 주소를 입력하세요.</FieldError>
     </Field>
   ),
 }
 
-export const AllSizes: Story = {
-  name: 'All Sizes',
+export const Sizes: Story = {
+  name: '크기 비교',
   render: () => (
     <div className="flex flex-col gap-4">
-      <Input aria-label="Small input" placeholder="sm (32px)" inputSize="sm" />
-      <Input aria-label="Medium input" placeholder="md (40px, default)" inputSize="md" />
-      <Input aria-label="Large input" placeholder="lg (44px touch target)" inputSize="lg" />
+      <Input aria-label="작은 입력" placeholder="sm (32px)" inputSize="sm" />
+      <Input aria-label="기본 입력" placeholder="md (40px, 기본값)" inputSize="md" />
+      <Input aria-label="큰 입력" placeholder="lg (44px 터치 타깃)" inputSize="lg" />
     </div>
   ),
 }

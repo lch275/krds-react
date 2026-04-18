@@ -2,25 +2,25 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Switch } from './Switch'
 
 const meta: Meta<typeof Switch> = {
-  title: 'UI/Inputs/Switch',
+  title: '인터페이스/입력/스위치',
   component: Switch,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: `
-**Switch** represents an immediate on/off setting. Unlike a checkbox, it is better suited to toggles that take effect right away.
+**Switch**는 즉시 적용되는 켜기/끄기 설정에 적합한 토글 컴포넌트입니다. 선택 항목 집합에 쓰는 체크박스와는 용도가 다릅니다.
 
-## Checkbox vs switch
-| Pattern | Checkbox | Switch |
+## 체크박스와의 차이
+| 패턴 | Checkbox | Switch |
 | --- | --- | --- |
-| Best for | Selection in a set | Immediate setting toggle |
-| Mental model | Include or exclude | Turn on or off |
+| 적합한 용도 | 목록 내 선택 | 즉시 반영되는 설정 토글 |
+| 인식 방식 | 포함/제외 | 켜기/끄기 |
 | ARIA role | checkbox | switch |
 
-## Accessibility notes
-- Standalone switch usage should provide an accessible name
-- The component exposes on/off state to assistive technology
+## 접근성 메모
+- 단독으로 사용할 때는 접근 가능한 이름을 제공해야 합니다.
+- 현재 켜짐/꺼짐 상태를 보조 기술에 노출합니다.
         `,
       },
     },
@@ -28,29 +28,29 @@ const meta: Meta<typeof Switch> = {
   argTypes: {
     checked: {
       control: 'boolean',
-      description: 'Controlled state.',
+      description: '제어형 상태입니다.',
     },
     defaultChecked: {
       control: 'boolean',
-      description: 'Initial uncontrolled state.',
+      description: '초기 비제어 상태입니다.',
       table: { defaultValue: { summary: 'false' } },
     },
     disabled: {
       control: 'boolean',
-      description: 'Disabled state.',
+      description: '비활성 상태입니다.',
       table: { defaultValue: { summary: 'false' } },
     },
     children: {
       control: 'text',
-      description: 'Visible label text.',
+      description: '보이는 레이블 텍스트입니다.',
     },
     'aria-label': {
       control: 'text',
-      description: 'Accessible name for unlabeled usage.',
+      description: '레이블이 없을 때 사용할 접근성 이름입니다.',
     },
     className: {
       control: 'text',
-      description: 'Additional Tailwind classes.',
+      description: '추가 Tailwind 클래스입니다.',
     },
   },
 }
@@ -60,91 +60,75 @@ type Story = StoryObj<typeof Switch>
 
 export const Default: Story = {
   args: {
-    children: 'Receive notifications',
+    children: '알림 받기',
     defaultChecked: false,
   },
 }
 
-export const Checked: Story = {
-  args: {
-    children: 'Dark mode',
-    defaultChecked: true,
-  },
-}
+export const Controlled: Story = {
+  name: '제어형',
+  render: () => {
+    const isChecked = true
 
-export const Disabled: Story = {
-  args: {
-    children: 'Pause service access',
-    disabled: true,
-    defaultChecked: false,
-  },
-}
-
-export const DisabledChecked: Story = {
-  name: 'Disabled + Checked',
-  args: {
-    children: 'Required feature',
-    disabled: true,
-    defaultChecked: true,
+    return <Switch checked={isChecked}>서비스 이용 동의</Switch>
   },
 }
 
 export const WithoutLabel: Story = {
-  name: 'Without Visible Label',
+  name: '보이는 레이블 없음',
   args: {
-    'aria-label': 'Receive notifications',
+    'aria-label': '알림 받기',
     defaultChecked: false,
   },
   parameters: {
     docs: {
       description: {
-        story:
-          'When there is no visible label, provide `aria-label` so the switch still has an accessible name.',
+        story: '보이는 레이블이 없다면 `aria-label`로 접근 가능한 이름을 반드시 제공합니다.',
       },
     },
   },
 }
 
 export const SettingsList: Story = {
-  name: 'Settings List',
+  name: '설정 목록',
   render: () => (
     <div className="flex max-w-sm flex-col divide-y divide-border-default">
       <div className="flex items-center justify-between py-4">
         <div>
-          <p className="text-sm font-medium text-text-default">Email notifications</p>
-          <p className="text-xs text-text-subtle">Receive notices by email.</p>
+          <p className="text-sm font-medium text-text-default">이메일 알림</p>
+          <p className="text-xs text-text-subtle">안내 사항을 이메일로 받습니다.</p>
         </div>
-        <Switch aria-label="Email notifications" defaultChecked />
+        <Switch aria-label="이메일 알림" defaultChecked />
       </div>
       <div className="flex items-center justify-between py-4">
         <div>
-          <p className="text-sm font-medium text-text-default">SMS notifications</p>
-          <p className="text-xs text-text-subtle">Receive urgent alerts by text message.</p>
+          <p className="text-sm font-medium text-text-default">문자 알림</p>
+          <p className="text-xs text-text-subtle">긴급 공지를 문자로 받습니다.</p>
         </div>
-        <Switch aria-label="SMS notifications" defaultChecked={false} />
+        <Switch aria-label="문자 알림" defaultChecked={false} />
       </div>
       <div className="flex items-center justify-between py-4">
         <div>
-          <p className="text-sm font-medium text-text-default">Marketing messages</p>
-          <p className="text-xs text-text-subtle">Receive event and benefit updates.</p>
+          <p className="text-sm font-medium text-text-default">혜택 안내</p>
+          <p className="text-xs text-text-subtle">이벤트와 혜택 소식을 받습니다.</p>
         </div>
-        <Switch aria-label="Marketing messages" defaultChecked={false} disabled />
+        <Switch aria-label="혜택 안내" defaultChecked={false} disabled />
       </div>
     </div>
   ),
 }
 
-export const AllStates: Story = {
-  name: 'All States',
+export const States: Story = {
+  name: '상태 비교',
   render: () => (
     <div className="flex flex-col gap-4">
-      <Switch defaultChecked={false}>Off</Switch>
-      <Switch defaultChecked>On</Switch>
+      <Switch defaultChecked={false}>꺼짐</Switch>
+      <Switch defaultChecked>켜짐</Switch>
       <Switch defaultChecked={false} disabled>
-        Disabled off
+        비활성(꺼짐)
       </Switch>
       <Switch defaultChecked disabled>
-        Disabled on
+        비활성(켜짐)
       </Switch>
     </div>
   ),

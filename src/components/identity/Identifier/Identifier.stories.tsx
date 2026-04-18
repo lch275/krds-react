@@ -2,19 +2,19 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Identifier } from './Identifier'
 
 const meta: Meta<typeof Identifier> = {
-  title: 'Identity/Identifier',
+  title: '아이덴티티/식별자',
   component: Identifier,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: `
-**Identifier** presents organization identity in a compact block that can support dark or light presentation.
+**Identifier**는 기관 정체성을 간결하게 보여 주는 식별 블록으로, 밝은 톤과 어두운 톤 모두에 대응합니다.
 
-## Accessibility notes
-- Keep the organization name explicit
-- Ensure contrast remains sufficient in both tones
-- Use identifier content consistently across pages that share the same organization context
+## 접근성 메모
+- 기관명은 분명하게 드러나야 합니다.
+- 두 톤 모두에서 충분한 대비를 유지해야 합니다.
+- 같은 기관 맥락을 공유하는 페이지에서는 일관된 식별 표현을 사용합니다.
         `,
       },
     },
@@ -22,12 +22,12 @@ const meta: Meta<typeof Identifier> = {
   argTypes: {
     organization: {
       control: 'text',
-      description: 'Organization name.',
+      description: '기관명입니다.',
     },
     tone: {
       control: 'select',
       options: ['light', 'dark'],
-      description: 'Visual tone.',
+      description: '표현 톤입니다.',
     },
   },
 }
@@ -35,15 +35,20 @@ const meta: Meta<typeof Identifier> = {
 export default meta
 type Story = StoryObj<typeof Identifier>
 
-export const Light: Story = {
+export const Default: Story = {
   args: {
-    organization: 'Ministry of Health and Welfare',
+    organization: '보건복지부',
   },
 }
 
-export const Dark: Story = {
-  args: {
-    organization: 'Ministry of Health and Welfare',
-    tone: 'dark',
-  },
+export const Tones: Story = {
+  name: '톤 비교',
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <Identifier organization="보건복지부" />
+      <div className="bg-slate-900 p-4">
+        <Identifier organization="보건복지부" tone="dark" />
+      </div>
+    </div>
+  ),
 }

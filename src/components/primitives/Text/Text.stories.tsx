@@ -2,22 +2,22 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Text } from './Text'
 
 const meta: Meta<typeof Text> = {
-  title: 'Primitives/Text',
+  title: '기초/텍스트',
   component: Text,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: `
-**Text** provides typographic variants while keeping semantic element choice independent through the \`as\` prop.
+**Text**는 \`as\` 속성으로 의미 요소를 유지하면서도 다양한 타이포그래피 스타일을 적용할 수 있는 텍스트 컴포넌트입니다.
 
-## Variants
-- \`body-lg\`: larger body copy
-- \`body-md\`: default body copy
-- \`body-sm\`: compact supporting copy
-- \`caption\`: helper or metadata text
-- \`overline\`: compact label treatment
-- \`code\`: monospace inline code styling
+## 변형
+- \`body-lg\`: 본문 강조용 큰 텍스트
+- \`body-md\`: 기본 본문 텍스트
+- \`body-sm\`: 보조 설명용 작은 텍스트
+- \`caption\`: 메타 정보나 보조 문구
+- \`overline\`: 짧은 라벨형 텍스트
+- \`code\`: 고정폭 코드 텍스트
         `,
       },
     },
@@ -26,22 +26,22 @@ const meta: Meta<typeof Text> = {
     variant: {
       control: 'select',
       options: ['body-lg', 'body-md', 'body-sm', 'caption', 'overline', 'code'],
-      description: 'Text style variant.',
+      description: '텍스트 스타일 변형입니다.',
       table: { defaultValue: { summary: 'body-md' } },
     },
     as: {
       control: 'select',
       options: ['p', 'span', 'div', 'label', 'legend', 'figcaption', 'small', 'strong', 'em'],
-      description: 'Rendered HTML element.',
+      description: '렌더링할 HTML 요소입니다.',
       table: { defaultValue: { summary: 'p' } },
     },
     children: {
       control: 'text',
-      description: 'Text content.',
+      description: '텍스트 내용입니다.',
     },
     className: {
       control: 'text',
-      description: 'Additional Tailwind classes.',
+      description: '추가 Tailwind 클래스입니다.',
     },
   },
 }
@@ -51,65 +51,30 @@ type Story = StoryObj<typeof Text>
 
 export const Default: Story = {
   args: {
-    children:
-      'This is the default body text style used for standard content in the design system.',
+    children: '기본 본문 텍스트로, 일반적인 서비스 설명과 안내 문구에 사용합니다.',
     variant: 'body-md',
-  },
-}
-
-export const BodyLarge: Story = {
-  args: {
-    children: 'Large body text works well for lead copy and emphasized reading content.',
-    variant: 'body-lg',
-  },
-}
-
-export const BodyMedium: Story = {
-  args: {
-    children: 'Medium body text is the default style for most interface copy.',
-    variant: 'body-md',
-  },
-}
-
-export const BodySmall: Story = {
-  args: {
-    children: 'Small body text is suited to supporting information and metadata.',
-    variant: 'body-sm',
-  },
-}
-
-export const Caption: Story = {
-  args: {
-    children: 'Caption text is useful for helper copy, annotations, and image descriptions.',
-    variant: 'caption',
-  },
-}
-
-export const Overline: Story = {
-  args: {
-    children: 'Category label',
-    variant: 'overline',
   },
 }
 
 export const Code: Story = {
   args: {
-    children: 'const greeting = "Hello"',
+    children: 'const region = "서울"',
     variant: 'code',
     as: 'code',
   },
 }
 
-export const AllVariants: Story = {
+export const Variants: Story = {
+  name: '변형 비교',
   render: () => (
     <div className="flex flex-col gap-4">
-      <Text variant="body-lg">body-lg: larger body text</Text>
-      <Text variant="body-md">body-md: default body text</Text>
-      <Text variant="body-sm">body-sm: compact body text</Text>
-      <Text variant="caption">caption: helper and metadata text</Text>
-      <Text variant="overline">overline: category label</Text>
+      <Text variant="body-lg">body-lg: 강조된 본문 텍스트</Text>
+      <Text variant="body-md">body-md: 기본 본문 텍스트</Text>
+      <Text variant="body-sm">body-sm: 보조 설명 텍스트</Text>
+      <Text variant="caption">caption: 도움말과 메타 정보</Text>
+      <Text variant="overline">overline: 카테고리 라벨</Text>
       <Text variant="code" as="code">
-        code: monospace inline code text
+        code: 고정폭 코드 텍스트
       </Text>
     </div>
   ),

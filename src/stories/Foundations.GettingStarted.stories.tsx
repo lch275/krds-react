@@ -6,29 +6,28 @@ function GettingStartedPage() {
       <div className="mx-auto flex max-w-5xl flex-col gap-8">
         <header className="rounded-dialog border border-border-default bg-bg-default p-8 shadow-card">
           <p className="text-sm font-semibold uppercase tracking-[0.12em] text-primary">
-            Foundations
+            기초
           </p>
-          <h1 className="mt-3 text-4xl font-bold">Getting Started</h1>
+          <h1 className="mt-3 text-4xl font-bold">시작하기</h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-text-subtle">
-            This design system organizes KRDS-inspired components into a stable
-            React API with accessibility, predictable semantics, and reusable
-            composition as the baseline.
+            이 디자인 시스템은 KRDS에서 영감을 받은 컴포넌트를 접근성, 예측 가능한 시맨틱,
+            재사용 가능한 조합성을 기준으로 정리한 React API입니다.
           </p>
         </header>
 
         <section className="grid gap-6 md:grid-cols-3">
           {[
             {
-              title: '1. Install',
-              body: 'Use npm install, then run the Vite app or Storybook to inspect components in isolation.',
+              title: '1. 설치',
+              body: '의존성을 설치한 뒤 Vite 앱이나 Storybook을 실행해 컴포넌트를 개별적으로 확인합니다.',
             },
             {
-              title: '2. Import',
-              body: 'Consume components from the package entrypoint so category-level exports stay stable over time.',
+              title: '2. 가져오기',
+              body: '패키지 엔트리포인트에서 컴포넌트를 불러와 카테고리 단위 export를 일관되게 유지합니다.',
             },
             {
-              title: '3. Verify',
-              body: 'Every component addition should include stories, tests, and a demo update when it changes showcase coverage.',
+              title: '3. 검증',
+              body: '새 컴포넌트를 추가할 때는 스토리, 테스트, 필요 시 데모 갱신까지 함께 포함합니다.',
             },
           ].map((item) => (
             <article
@@ -44,19 +43,19 @@ function GettingStartedPage() {
         </section>
 
         <section className="rounded-dialog border border-border-default bg-bg-default p-8 shadow-card">
-          <h2 className="text-2xl font-semibold">Category map</h2>
+          <h2 className="text-2xl font-semibold">카테고리 구성</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {[
-              ['Primitives', 'Box, Text, Heading'],
-              ['UI', 'Button, Alert, Badge, Link, SearchBar, inputs'],
-              ['Data', 'Table'],
-              ['Identity', 'Masthead, Identifier'],
-              ['Navigation', 'Breadcrumb, Pagination, menus, step flows'],
-              ['Feedback', 'Toast, Snackbar, loading and empty states'],
-              ['Help', 'Tooltip, ContextualHelp'],
-              ['Layout', 'Header, Footer'],
-              ['Overlays', 'Dialog, Tabs, Accordion, BottomSheet'],
-              ['Patterns', 'Consent, filtering, result summaries and lists'],
+              ['기초', 'Box, Text, Heading'],
+              ['UI', 'Button, Alert, Badge, Link, SearchBar, 입력 컴포넌트'],
+              ['데이터', 'Table'],
+              ['아이덴티티', 'Masthead, Identifier'],
+              ['내비게이션', 'Breadcrumb, Pagination, 메뉴, 단계 흐름'],
+              ['피드백', 'Toast, Snackbar, 로딩과 빈 상태'],
+              ['도움말', 'Tooltip, ContextualHelp'],
+              ['레이아웃', 'Header, Footer'],
+              ['오버레이', 'Dialog, Tabs, Accordion, BottomSheet'],
+              ['패턴', '동의, 필터링, 결과 요약과 목록'],
             ].map(([title, body]) => (
               <article
                 key={title}
@@ -70,15 +69,15 @@ function GettingStartedPage() {
         </section>
 
         <section className="rounded-dialog border border-border-default bg-bg-default p-8 shadow-card">
-          <h2 className="text-2xl font-semibold">Workflow</h2>
+          <h2 className="text-2xl font-semibold">작업 흐름</h2>
           <div className="mt-5 grid gap-4 md:grid-cols-2">
             {[
-              'Implement the component in the appropriate category directory.',
-              'Export it from the category barrel and from src/index.ts.',
-              'Add a Storybook story that documents states and intended usage.',
-              'Add Vitest coverage for semantics, interaction, and accessibility.',
-              'Reflect meaningful additions in the demo showcase when needed.',
-              'Run lint and test:run before closing the change.',
+              '적절한 카테고리 디렉터리에 컴포넌트를 구현합니다.',
+              '카테고리 배럴과 src/index.ts에서 export를 연결합니다.',
+              '상태와 사용 의도를 설명하는 Storybook 스토리를 추가합니다.',
+              '시맨틱, 상호작용, 접근성에 대한 Vitest를 작성합니다.',
+              '필요하면 데모 쇼케이스에도 의미 있는 변경을 반영합니다.',
+              '변경 마무리 전 lint와 test:run을 실행합니다.',
             ].map((item) => (
               <div
                 key={item}
@@ -95,7 +94,7 @@ function GettingStartedPage() {
 }
 
 const meta = {
-  title: 'Foundations/Getting Started',
+  title: '기초/시작하기',
   component: GettingStartedPage,
   tags: ['autodocs'],
   parameters: {

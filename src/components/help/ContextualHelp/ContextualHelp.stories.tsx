@@ -2,19 +2,19 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { ContextualHelp } from './ContextualHelp'
 
 const meta: Meta<typeof ContextualHelp> = {
-  title: 'Help/ContextualHelp',
+  title: '도움말/문맥 도움말',
   component: ContextualHelp,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: `
-**ContextualHelp** pairs a short explanation with an optional follow-up link.
+**ContextualHelp**는 짧은 설명과 선택적인 추가 링크를 함께 제공하는 도움말 패턴입니다.
 
-## Accessibility notes
-- Use this pattern for non-blocking support content
-- Keep the title specific to the nearby task
-- The linked destination should expand on the same topic rather than changing context unexpectedly
+## 접근성 메모
+- 현재 작업을 막지 않는 보조 안내에 사용합니다.
+- 제목은 주변 작업과 직접적으로 연결되어야 합니다.
+- 연결되는 링크는 갑작스럽게 다른 맥락으로 이동시키지 않아야 합니다.
         `,
       },
     },
@@ -22,15 +22,15 @@ const meta: Meta<typeof ContextualHelp> = {
   argTypes: {
     title: {
       control: 'text',
-      description: 'Help heading.',
+      description: '도움말 제목입니다.',
     },
     children: {
       control: 'text',
-      description: 'Supporting content.',
+      description: '보조 설명 내용입니다.',
     },
     linkHref: {
       control: 'text',
-      description: 'Optional destination URL.',
+      description: '선택적으로 제공하는 링크 주소입니다.',
     },
   },
 }
@@ -40,8 +40,8 @@ type Story = StoryObj<typeof ContextualHelp>
 
 export const Default: Story = {
   args: {
-    title: 'Why this matters',
-    children: 'Use contextual help for request-driven supporting content.',
+    title: '왜 필요한가요?',
+    children: '현재 입력 항목과 직접 관련된 보조 설명을 제공할 때 사용합니다.',
     linkHref: 'https://www.krds.go.kr',
   },
 }

@@ -2,26 +2,26 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Alert } from './Alert'
 
 const meta: Meta<typeof Alert> = {
-  title: 'UI/Alert',
+  title: '인터페이스/알림',
   component: Alert,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: `
-**Alert** communicates important contextual information to the user.
+**Alert**는 사용자에게 중요한 안내, 경고, 오류 정보를 문맥 안에서 분명하게 전달하는 컴포넌트입니다.
 
-## Live region mapping
-| live value | role | Use case |
+## 라이브 리전 매핑
+| live 값 | role | 사용 상황 |
 | --- | --- | --- |
-| \`off\` | \`region\` | Static information already present in the page flow |
-| \`polite\` | \`status\` | Non-blocking updates announced when possible |
-| \`assertive\` | \`alert\` | Urgent issues that should interrupt current reading |
+| \`off\` | \`region\` | 페이지 흐름 안의 정적 안내 |
+| \`polite\` | \`status\` | 방해하지 않고 가능한 시점에 읽어 주는 안내 |
+| \`assertive\` | \`alert\` | 즉시 알려야 하는 긴급 오류나 경고 |
 
-## Accessibility notes
-- Pair tone with text, not color alone
-- Use live regions only for dynamic alerts
-- Prefer concise titles and short body copy
+## 접근성 메모
+- 의미를 색상만으로 전달하지 않습니다.
+- 라이브 리전은 동적으로 나타나는 알림에만 사용합니다.
+- 제목과 본문은 짧고 분명하게 유지합니다.
         `,
       },
     },
@@ -30,26 +30,26 @@ const meta: Meta<typeof Alert> = {
     variant: {
       control: 'select',
       options: ['info', 'success', 'warning', 'error'],
-      description: 'Alert tone.',
+      description: '알림 스타일입니다.',
       table: { defaultValue: { summary: 'info' } },
     },
     title: {
       control: 'text',
-      description: 'Alert title.',
+      description: '알림 제목입니다.',
     },
     children: {
       control: 'text',
-      description: 'Optional body content.',
+      description: '선택적인 본문 내용입니다.',
     },
     live: {
       control: 'select',
       options: ['off', 'polite', 'assertive'],
-      description: 'ARIA live region behavior.',
+      description: 'ARIA live region 동작 방식입니다.',
       table: { defaultValue: { summary: 'off' } },
     },
     className: {
       control: 'text',
-      description: 'Additional Tailwind classes.',
+      description: '추가 Tailwind 클래스입니다.',
     },
   },
 }
@@ -60,100 +60,67 @@ type Story = StoryObj<typeof Alert>
 export const Default: Story = {
   args: {
     variant: 'info',
-    title: 'Helpful information',
-    children: 'This message provides context the user should review.',
-  },
-}
-
-export const Info: Story = {
-  args: {
-    variant: 'info',
-    title: 'Service notice',
-    children: 'A new service flow will be available on January 1, 2024.',
-  },
-}
-
-export const Success: Story = {
-  args: {
-    variant: 'success',
-    title: 'Request submitted',
-    children: 'The civil request has been received successfully.',
-  },
-}
-
-export const Warning: Story = {
-  args: {
-    variant: 'warning',
-    title: 'Check the input',
-    children: 'Please review the information one more time before submitting.',
-  },
-}
-
-export const Error: Story = {
-  args: {
-    variant: 'error',
-    title: 'Connection error',
-    children: 'The service cannot reach the server right now. Please try again later.',
+    title: '안내 메시지',
+    children: '신청 전에 입력한 내용을 한 번 더 확인해 주세요.',
   },
 }
 
 export const TitleOnly: Story = {
   args: {
     variant: 'info',
-    title: 'Title only alert',
+    title: '제목만 있는 알림',
   },
 }
 
 export const LivePolite: Story = {
-  name: 'Polite Live Region',
+  name: '완만한 라이브 알림',
   args: {
     variant: 'success',
-    title: 'Save complete',
-    children: 'Your changes have been saved.',
+    title: '저장이 완료되었습니다',
+    children: '변경한 내용이 저장되었습니다.',
     live: 'polite',
   },
   parameters: {
     docs: {
       description: {
-        story:
-          'Use `polite` when the update matters but should not interrupt the current task.',
+        story: '현재 작업을 방해하지 않으면서도 안내가 필요한 경우 `polite`를 사용합니다.',
       },
     },
   },
 }
 
 export const LiveAssertive: Story = {
-  name: 'Assertive Live Region',
+  name: '즉시 읽는 라이브 알림',
   args: {
     variant: 'error',
-    title: 'Session expired',
-    children: 'For security reasons you have been signed out. Please sign in again.',
+    title: '세션이 만료되었습니다',
+    children: '보안을 위해 로그아웃되었습니다. 다시 로그인해 주세요.',
     live: 'assertive',
   },
   parameters: {
     docs: {
       description: {
-        story:
-          'Use `assertive` sparingly for urgent issues that must be announced immediately.',
+        story: '즉시 알려야 하는 긴급 오류에만 `assertive`를 제한적으로 사용합니다.',
       },
     },
   },
 }
 
-export const AllVariants: Story = {
+export const Variants: Story = {
+  name: '변형 비교',
   render: () => (
     <div className="flex flex-col gap-4">
-      <Alert variant="info" title="Info">
-        Informational status message.
+      <Alert variant="info" title="안내">
+        일반적인 서비스 안내 메시지입니다.
       </Alert>
-      <Alert variant="success" title="Success">
-        Task completed successfully.
+      <Alert variant="success" title="완료">
+        작업이 정상적으로 완료되었습니다.
       </Alert>
-      <Alert variant="warning" title="Warning">
-        User confirmation is recommended.
+      <Alert variant="warning" title="주의">
+        제출 전에 내용을 다시 확인하는 것이 좋습니다.
       </Alert>
-      <Alert variant="error" title="Error">
-        A blocking problem has occurred.
+      <Alert variant="error" title="오류">
+        진행을 막는 문제가 발생했습니다.
       </Alert>
     </div>
   ),
